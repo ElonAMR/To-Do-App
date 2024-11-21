@@ -62,3 +62,120 @@ h2 {
     margin: 0 auto;  /* ממרכז את הקונטיינר ומתייחס  כלפי חוץ */
     justify-content: center; /* מוודא שהאלמנטים מתחילים בצד שמאל */
 }
+
+
+/*כל פתק משימה */
+.task-card {
+    background-color:  #3a3a3a;
+    color: white;
+    width: 200px; /* רוחב */
+    min-height: 150px; /* גובה מינימלי */
+    display: flex;
+    flex-direction: column; /* התוכן מוצג מלמעלה למטה */
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 6px; 
+    padding: 20px;
+    box-sizing: border-box; 
+    overflow-wrap: break-word; /* שבירת שורות בטקסט */
+    word-break: break-word; /* שבירת מילים ארוכות */
+    white-space: pre-wrap;
+    position: relative; /* שיהיה ביחס לאלמנט אב שזה הקונטיינר */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    gap: 10px; /* רווח בין האלמנטים בפנים */
+    transition: transform 0.3s ease-out;
+
+}
+
+
+/*ריחוף על המשימה */
+.task-card:hover {
+    transform: scale(1.1); /* הגדלה קטנה של הכפתור */
+    cursor: pointer; /* מצביע עכבר משתנה ליד */
+}  
+
+
+/*טקסט המשימה */
+.task-text {
+    flex: 1; /* תופס את השטח בין המחיקה לכפתור */
+    font-size: medium;
+    text-align: center;
+    display: flex;
+    align-items: center; /* ממקם טקסט במרכז אנכי */
+    justify-content: center; /* ממקם טקסט במרכז אופקי */
+    width: 100%;
+}
+
+
+/* כפתור מחיקת המשימה */
+.delete-btn {
+    position: absolute; 
+    top: 5px;
+    right: 5px;
+    background-color: #5a5a5a;
+    color: #ffffff;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: small;
+    transition: transform 0.3s ease-out, color 0.3s ease-out; /* מעבר חלק עם ease-out */
+}
+
+
+/*ריחוף כפתור מחיקת המשימה */
+.delete-btn:hover {
+    background-color: red; 
+}
+
+
+/*כפתור השלמת המשימה */
+.complete-btn {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border-radius: 6px;
+    width: 95%; 
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    font-size: medium;
+    transition: transform 0.3s ease-out; 
+
+}
+
+
+/*ריחוף על כפתור להשלים המשימה */
+.complete-btn:hover {
+    background-color: #4CAF50;
+}
+
+
+/*לאחר השלמת המשימה */
+.task-card.completed {
+    background-color: #4CAF50;  
+    opacity: 0.8; /* עושה את המשימה קצת שקופה */
+    cursor: pointer; /* משנה את הצורה של העכבר */
+}
+
+
+/*טקסט לאחר השלמת המשימה */
+.task-card.completed .task-text {
+    text-decoration: line-through; /* מוחק את הטקסט */
+}
+
+
+/*כפתור לאחר השלמת המשימה */
+.task-card.completed .complete-btn {
+    text-decoration: none; /* מבטל את פס המחיקה לכפתור */
+    color: white; /* שומר על צבע הטקסט של הכפתור */
+}
+
+
+/*ריחוף על הכפתור לאחר השלמת המשימה */
+.task-card.completed .complete-btn:hover {
+    background-color: red;
+    text-decoration: none; /* מבטל את פס המחיקה לכפתור */
+    color: white; /* שומר על צבע הטקסט של הכפתור */
+}
