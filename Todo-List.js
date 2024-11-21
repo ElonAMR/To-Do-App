@@ -82,7 +82,6 @@ function addTask(taskObject = null) {
 
 
 
-
 function loadTasks(){
     const tasks=JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(taskObject => {
@@ -90,10 +89,6 @@ function loadTasks(){
     });
 }
 document.addEventListener("DOMContentLoaded", loadTasks);
-
-
-
-
 
 
 
@@ -117,10 +112,19 @@ function completedTask(thisTask,completeButton,taskId){
     }
     localStorage.setItem('tasks', JSON.stringify(tasks));  // עדכון השמירה
 
-
 }
 
 
 
 
+//פונקציית מחיקה שמקבלת את אותו פתק ספציפי כפרמטר
+function deleteTask(thisTask, taskId){
+
+    thisTask.remove();  // מחיקת הפתק מהדף
+  
+    // מחיקת המשימה מהמאגרים בזיכרון
+    let tasks=JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks = tasks.filter(task => task.id != taskId);
+    localStorage.setItem('tasks', JSON.stringify(tasks));  
+}
 
