@@ -79,3 +79,18 @@ function addTask(taskObject = null) {
     const taskContainer = document.getElementById("tasks-container");
     taskContainer.appendChild(newTask);
 }
+
+
+
+
+function loadTasks(){
+    const tasks=JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(taskObject => {
+        addTask(taskObject);
+    });
+}
+document.addEventListener("DOMContentLoaded", loadTasks);
+
+
+
+
