@@ -128,3 +128,51 @@ function deleteTask(thisTask, taskId){
     localStorage.setItem('tasks', JSON.stringify(tasks));  
 }
 
+
+
+
+
+//פונקציית עריכת משימה 
+function editTask(taskElement,taskId){
+
+    // שמירת הערך המקורי לפני העריכה
+    const originalText=taskElement.textContent.trim();
+    // הפיכת הטקסט לעריך
+    taskElement.setAttribute("contenteditable", "true");
+
+
+    // פונקציה פנימית לעדכון הזיכרון
+    function updateLocalStorage() {
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const task = tasks.find(task => task.id === taskId);
+        if (task) {
+            task.text = taskElement.textContent.trim(); // מעדכן את הטקסט
+        }
+        localStorage.setItem('tasks', JSON.stringify(tasks)); // שמירה
+    }
+
+
+    // אירוע 1: כאשר הפתק מאבד פוקוס
+    taskElement.addEventListener("blur",function(){
+        const newText = taskElement.textContent.trim(); 
+        if (!newText) {
+            alert("Task Cannot Be Empty!");
+            taskElement.textContent = originalText;
+        }
+        taskElement.setAttribute("contenteditable","false");
+        updateLocalStorage(); // עדכון הזיכרון
+    });
+
+
+    // אירוע 2: כאשר המשתמש לוחץ Enter
+    taskElement.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();     // מונע מעבר לשורה חדשה
+            taskElement.setAttribute("contenteditable", "false");
+            updateLocalStorage(); // עדכון הזיכרון
+        }
+    });
+}
+
+
+
