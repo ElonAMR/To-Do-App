@@ -94,3 +94,33 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 
 
 
+
+
+
+//פונקציית השלמת/ביטול-השלמת משימה 
+function completedTask(thisTask,completeButton,taskId){
+  
+    if(thisTask.classList.contains("completed")){
+        thisTask.classList.remove("completed");
+        completeButton.textContent = "Check";
+    }
+    else{
+       thisTask.classList.add("completed");
+       completeButton.textContent="Undo Completion";
+    }
+    
+    // עדכון המצב גם בזיכרון
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const task = tasks.find(task => task.id === taskId);  // מציאת המשימה לפי ID
+    if (task) {
+        task.completed = !task.completed;  // מעדכנים את הסטטוס של המשימה
+    }
+    localStorage.setItem('tasks', JSON.stringify(tasks));  // עדכון השמירה
+
+
+}
+
+
+
+
+
